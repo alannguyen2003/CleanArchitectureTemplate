@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+    <Project Sdk="Microsoft.NET.Sdk">
 
     <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.0"/>
 
@@ -12,6 +12,10 @@
 
     <ItemGroup>
         <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Clean.WebAPI\Clean.WebAPI.csproj" />
     </ItemGroup>
 
 </Project>
