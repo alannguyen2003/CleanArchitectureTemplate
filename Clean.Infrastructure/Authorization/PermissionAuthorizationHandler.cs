@@ -11,6 +11,7 @@ public sealed class PermissionAuthorizationHandler(IServiceProvider serviceScope
         AuthorizationHandlerContext context,
         PermissionRequirement requirement)
     {
+        Console.WriteLine("Đi qua đây rồi");
         // TODO: You definitely want to reject unauthenticated users here.
         if (context.User is { Identity.IsAuthenticated: true })
         {
@@ -23,9 +24,7 @@ public sealed class PermissionAuthorizationHandler(IServiceProvider serviceScope
         using IServiceScope scope = serviceScopeFactory.CreateScope();
 
         PermissionProvider permissionProvider = scope.ServiceProvider.GetRequiredService<PermissionProvider>();
-
         Guid userId = context.User.GetUserId();
-
         HashSet<string> permissions = await permissionProvider.GetForUserIdAsync(userId);
 
         if (permissions.Contains(requirement.Permission))

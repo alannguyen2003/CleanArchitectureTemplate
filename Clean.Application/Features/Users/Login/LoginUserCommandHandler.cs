@@ -31,7 +31,7 @@ public sealed class LoginUserCommandHandler(
         }
 
         string token = tokenProvider.Create(user);
-
+        
         return token;
     }
 }

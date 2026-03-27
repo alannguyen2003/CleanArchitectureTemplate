@@ -22,13 +22,14 @@ builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
 WebApplication app = builder.Build();
 
-app.MapEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerWithUi();
 
     app.ApplyMigrations();
+
+    app.MapGet("/", () => Results.Redirect("/swagger"));
 }
 
 app.MapHealthChecks("health", new HealthCheckOptions
@@ -36,7 +37,9 @@ app.MapHealthChecks("health", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
+/*
 app.UseRequestContextLogging();
+*/
 
 app.UseSerilogRequestLogging();
 
@@ -45,6 +48,8 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.MapEndpoints();
+
 
 // REMARK: If you want to use Controllers, you'll need this.
 app.MapControllers();

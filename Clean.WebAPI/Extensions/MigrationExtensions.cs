@@ -1,4 +1,5 @@
-﻿using Clean.Infrastructure.Database;
+﻿using Clean.Domain.Users;
+using Clean.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clean.WebAPI.Extensions;

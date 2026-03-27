@@ -1,4 +1,5 @@
-﻿using Clean.Application.Abstractions.Authentication;
+﻿using System.Security.Claims;
+using Clean.Application.Abstractions.Authentication;
 using Clean.Application.Abstractions.Data;
 using Clean.Application.Abstractions.Messaging;
 using Clean.Domain.Users;

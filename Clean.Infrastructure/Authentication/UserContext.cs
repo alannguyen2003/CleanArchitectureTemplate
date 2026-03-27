@@ -1,4 +1,5 @@
-﻿using Clean.Application.Abstractions.Authentication;
+﻿using System.Security.Claims;
+using Clean.Application.Abstractions.Authentication;
 using Microsoft.AspNetCore.Http;
 
 namespace Clean.Infrastructure.Authentication;
@@ -12,10 +13,16 @@ public class UserContext : IUserContext
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public Guid UserId =>
-        _httpContextAccessor
-            .HttpContext?
-            .User
-            .GetUserId() ??
-        throw new UserContextUnavailableException();
+    public Guid UserId
+    {
+        get
+        {
+            var claims = _httpContextAccessor.HttpContext.User.FindFirstValue("sub");
+            return _httpContextAccessor
+                    .HttpContext?
+                    .User
+                    .GetUserId() ??
+                throw new UserContextUnavailableException();
+        }
+    }
 }

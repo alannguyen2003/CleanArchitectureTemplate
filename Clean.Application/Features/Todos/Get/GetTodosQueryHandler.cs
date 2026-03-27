@@ -12,6 +12,7 @@ public sealed class GetTodosQueryHandler(IApplicationDbContext context, IUserCon
 {
     public async Task<Result<List<TodoResponse>>> Handle(GetTodosQuery query, CancellationToken cancellationToken)
     {
+        Console.WriteLine(userContext.UserId);
         if (query.UserId != userContext.UserId)
         {
             return Result.Failure<List<TodoResponse>>(UserErrors.Unauthorized());
