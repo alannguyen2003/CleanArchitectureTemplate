@@ -15,7 +15,6 @@ public sealed class GetById : IEndpoint
         app.MapGet("users/{userId}", async (
                 Guid userId,
                 IQueryHandler<GetUserByIdQuery, UserResponse> handler,
-                IHttpContextAccessor httpContextAccessor,
                 CancellationToken cancellationToken) =>
             {
                 var query = new GetUserByIdQuery(userId);
